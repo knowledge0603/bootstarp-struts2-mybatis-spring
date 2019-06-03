@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="callSettersOnNulls" value="true"/>
+	</settings>
+	<typeAliases>
+		<typeAlias alias="agricultural" type="com.test.dtjc.tdsc0002.model.Tdsc0002Model01"/>
+     	<typeAlias alias="sqladapter" type="com.test.dtjc.tdsc0000.common.SQLAdapter" />  
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/test/dtjc/tdsc0002/sqlMappers/Tdsc0002Mappers.xml" />
+	</mappers>
+</configuration>	

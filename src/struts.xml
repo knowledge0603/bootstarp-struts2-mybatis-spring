@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>	
+	<!-- 让jsp拥有html同样的样式，防止变形 -->
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.ui.templateDir" value="template" />
+    <constant name="struts.ui.templateSuffix" value="ftl" />
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<!-- 指定默认编码集 ，作用于HttpServletRequest的setCharacterEncoding（）和freemarker，vilocity的输出 -->
+	<constant name="struts.configuration.xmlreload" value="true"/>
+	<!-- 当struts配置文件修改时是否自动加载 -->
+	<constant name="struts.devMode" value="true"/>
+	<package name="default" extends="struts-default" namespace="/">
+	    <action name="tdsc0004" class="com.test.dtjc.tdsc0004.action.Tdsc0004Action">
+			<result name="success" >index.html</result>
+		</action>
+	</package>
+</struts>    

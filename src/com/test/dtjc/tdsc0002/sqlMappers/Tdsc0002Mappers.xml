@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.test.dtjc.tdsc0002.model.Tdsc0002Model01">
+    <resultMap type="com.test.dtjc.tdsc0002.model.Tdsc0002Model01" id="allocatinglandResult">
+		<id column="GD_GUID" property="GD_GUID"/>
+		<!--行号-->
+		<result property="ROWNUM" column="ROWNUM" />
+		<!--行政区-->
+		<result property="XZQ_DM" column="XZQ_DM" />
+		<!--项目名称-->
+		<result property="XM_MC" column="XM_MC" />
+		<!--供地标识-->
+		<result property="GD_GUID" column="GD_GUID" />
+		<!--批准文号-->
+		<result property="PZ_WH" column="PZ_WH" />
+		<!--总面积-->
+		<result property="GD_ZMJ" column="GD_ZMJ" />
+		<!--供应面积-->
+		<result property="GY_MJ" column="GY_MJ" />
+		<!--状态-->
+		<result property="XM_ZT" column="XM_ZT" />
+		<!--批准日期-->
+		<result property="PZ_RQ" column="PZ_RQ" />		
+		<!--宗地标识-->
+		<result property="ZD_GUID" column="ZD_GUID" />
+		<!--批准机关-->
+		<result property="PZ_JG" column="PZ_JG" />
+		<!--供应方式-->
+		<result property="GY_FS" column="GY_FS" />
+		<!--宗地编号-->
+		<result property="ZD_BH" column="ZD_BH" />
+		<!--土地级别-->
+		<result property="TD_JB" column="TD_JB" />
+		<!--开发利用标识-->
+		<result property="KFLY_BZ" column="KFLY_BZ" />
+		<!--电子监管编号-->
+		<result property="DZ_BA_BH" column="DZ_BA_BH" />
+		<!--投资主体性质-->
+		<result property="TZZT_XZ" column="TZZT_XZ" />
+		<!--行业分类-->
+		<result property="HY_FL" column="HY_FL" />
+		<association property="allocatinglandTable"  column="GD_GUID" javaType="com.test.dtjc.tdsc0002.model.Tdsc0002Model02">
+			<!-- id：关联查询用户的唯 一标识
+			column：指定唯 一标识用户信息的列
+			javaType：映射到user的哪个属性
+			 -->
+			<id column="GD_GUID" property="GD_GUID"/>
+	        <!--使用权人-->			
+			<result column="SYQR" property="SYQR"/>
+		</association>
+	</resultMap>
+		
+    <resultMap type="com.test.dtjc.tdsc0002.model.Tdsc0002Model01" id="agriculturalResult">
+		<!--行号-->
+		<result property="ROWNUM" column="ROWNUM" />
+		<!--行政区-->
+		<result property="XZQ_DM" column="XZQ_DM" />
+		<!--项目名称-->
+		<result property="XM_MC" column="XM_MC" />
+		<!--供地标识-->
+		<result property="GD_GUID" column="GD_GUID" />
+		<!--批准文号-->
+		<result property="PZ_WH" column="PZ_WH" />
+		<!--总面积-->
+		<result property="GD_ZMJ" column="GD_ZMJ" />
+		<!--供应面积-->
+		<result property="GY_MJ" column="GY_MJ" />
+		<!--状态-->
+		<result property="XM_ZT" column="XM_ZT" />
+		<!--批准日期-->
+		<result property="PZ_RQ" column="PZ_RQ" />		
+		<!--宗地标识-->
+		<result property="ZD_GUID" column="ZD_GUID" />
+		<!--批准机关-->
+		<result property="PZ_JG" column="PZ_JG" />
+		<!--供应方式-->
+		<result property="GY_FS" column="GY_FS" />
+		<!--宗地编号-->
+		<result property="ZD_BH" column="ZD_BH" />
+	    <!--使用权人-->
+		<result property="SYQR" column="SYQR" />
+ 	</resultMap>
+	<select id="superSelect" parameterType="String" resultType="java.util.LinkedHashMap" fetchSize="1000"> 
+		${sql} 
+	</select>
+	<select id="selectAgricultural" parameterType="int" resultMap="agriculturalResult">
+		SELECT
+		    ROWNUM,
+			XZQ_DM,
+			XM_MC,
+			GD_GUID,
+			PZ_WH,
+			GD_ZMJ,
+			GY_MJ,
+			XM_ZT,
+			PZ_RQ,
+			ZD_GUID,
+			GD_ZMJ,
+			GY_MJ
+		FROM T_GDXM  WHERE ROWNUM&lt;=#{rownum}  
+ 	</select>
+ 	<select id="selectAgriculturalCount" resultType="java.lang.Integer">
+		select
+			count(GD_GUID)
+		from T_GDXM  where rownum&lt;=#{rownum}  
+ 	</select>
+ 	<select id="selectAgriculturalInfo" parameterType="string" resultMap="agriculturalResult">
+		SELECT
+		    ROWNUM,
+			XZQ_DM,
+			XM_MC,
+			GD_GUID,
+			PZ_WH,
+			GD_ZMJ,
+			GY_MJ,
+			XM_ZT,
+			PZ_RQ,
+			ZD_GUID,
+			PZ_JG,
+			GY_FS,
+			ZD_BH
+		FROM T_GDXM  WHERE GD_GUID=#{gdGuid}  
+ 	</select>
+ 	<select id="selectAllocatingland" parameterType="string" resultMap="allocatinglandResult">
+		SELECT
+			A.XZQ_DM  AS XZQ_DM,
+			A.XM_MC   AS XM_MC,
+			A.GD_GUID AS GD_GUID,
+			A.PZ_WH   AS PZ_WH,
+			A.GD_ZMJ  AS GD_ZMJ,
+			A.GY_MJ   AS GY_MJ,
+			A.XM_ZT   AS XM_ZT,
+			A.PZ_RQ   AS PZ_RQ,
+			A.ZD_GUID AS ZD_GUID,
+			A.PZ_JG   AS PZ_JG,
+			A.GY_FS   AS GY_FS,
+			A.ZD_BH   AS ZD_BH,
+			A.TD_JB   AS TD_JB,
+			A.KFLY_BZ AS KFLY_BZ,
+			A.DZ_BA_BH AS DZ_BA_BH,
+			A.TZZT_XZ  AS TZZT_XZ,
+			A.HY_FL    AS HY_FL,
+			B.SYQR    AS SYQR
+		FROM T_GDXM A,T_HBGY_KZ B 
+		WHERE A.GD_GUID=#{gdGuid} 
+		      AND  A.GD_GUID = B.GD_GUID
+ 	</select>
+
+</mapper>
