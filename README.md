@@ -1,4 +1,4 @@
-# bootstarp-struts2-mybatis-spring
+# bootstarp-struts2-mybatis-spring-jquerydatatable
 
 
 1、项目中多个表查询，嵌套sql语句，聚合函数等，致使拼写的sql直接返回结果集合。
